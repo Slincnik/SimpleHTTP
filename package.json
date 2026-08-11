@@ -1,0 +1,48 @@
+{
+  "name": "@slincnik/simplehttp",
+  "version": "1.0.0",
+  "description": "Browser-only, zero-dependency HTTP client built on native Fetch.",
+  "type": "module",
+  "packageManager": "pnpm@10.26.0",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Slincnik/SimpleHTTP.git"
+  },
+  "homepage": "https://github.com/Slincnik/SimpleHTTP#readme",
+  "bugs": {
+    "url": "https://github.com/Slincnik/SimpleHTTP/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json && esbuild src/index.ts --bundle --format=esm --platform=browser --target=es2020 --minify --sourcemap=external --outfile=dist/index.js",
+    "test": "pnpm run build && node --test && tsc -p tsconfig.test.json && pnpm run check:size",
+    "typecheck": "pnpm run build && tsc -p tsconfig.test.json",
+    "size": "pnpm run build && pnpm run check:size",
+    "check:size": "node -e \"const z=require('node:zlib').gzipSync(require('node:fs').readFileSync('dist/index.js')).length; console.log(z+' bytes gzip'); if(z>3072) process.exit(1)\""
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "typescript": "^5.8.0"
+  },
+  "keywords": [
+    "fetch",
+    "http",
+    "browser",
+    "typescript"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,52 @@
+name: Feature request
+description: Suggest a focused improvement to SimpleHTTP
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        SimpleHTTP deliberately stays small and close to native Fetch. Please describe the browser HTTP problem before proposing an abstraction.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What ordinary browser HTTP task is difficult with the current API?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API or behavior
+      description: Show a concise usage example when possible.
+      placeholder: |
+        await api.get('/users', {
+          // proposed option
+        })
+    validations:
+      required: true
+
+  - type: textarea
+    id: native
+    attributes:
+      label: Native Fetch alternative
+      description: Can this already be solved cleanly with Fetch or another browser primitive? If so, why is library support still valuable?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe workarounds or simpler alternatives you considered.
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This is useful for browser HTTP requests and is not a framework-specific integration.
+          required: true
+        - label: I searched existing issues for similar proposals.
+          required: true
